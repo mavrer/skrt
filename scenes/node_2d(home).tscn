@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cruusqros15ib"]
+
+[node name="Node2D(home)" type="Node2D"]
+y_sort_enabled = true
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="TileMap"]
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="TileMap"]

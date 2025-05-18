@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://o416tefits7v"]
+
+[ext_resource type="Script" uid="uid://bq2ob0ufqhotw" path="res://scenes/customer.gd" id="1_8qg4y"]
+[ext_resource type="SpriteFrames" uid="uid://dd5yy4emjv62g" path="res://graphic/anim/caroline.tres" id="2_xss0h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xss0h"]
+size = Vector2(11, 6)
+
+[node name="Customer" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_8qg4y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_xss0h")
+animation = &"drink"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_xss0h")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

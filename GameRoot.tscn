@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://u5m3kvbk24x6"]
+
+[ext_resource type="Script" uid="uid://d4ablq3fm5aij" path="res://gameroot.gd" id="1_hirbl"]
+[ext_resource type="PackedScene" uid="uid://bgykdbsbfvrog" path="res://scenes/node_2d(cafe).tscn" id="3_drpm8"]
+[ext_resource type="PackedScene" uid="uid://ciqq65c8nib0w" path="res://scenes/node_2d(ex).tscn" id="4_kxd06"]
+[ext_resource type="PackedScene" uid="uid://b0ebftpgtmh23" path="res://scenes/control(start).tscn" id="5_8pgip"]
+
+[node name="GameRoot" type="Node2D"]
+script = ExtResource("1_hirbl")
+
+[node name="Start" parent="." instance=ExtResource("5_8pgip")]
+position = Vector2(355, 146)
+
+[node name="Cafe" parent="." instance=ExtResource("3_drpm8")]
+position = Vector2(-2, 0)
+
+[node name="Express" parent="." instance=ExtResource("4_kxd06")]
+position = Vector2(-167, 525)
