@@ -7,9 +7,9 @@
 [ext_resource type="Script" uid="uid://cg1ydqfitoitt" path="res://scenes/order_trigger_area.gd" id="6_ke1rn"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_npm0j"]
-vertices = PackedVector2Array(308, -10.9609, 1, -10.0313, 1, -51, 161, -51, 308, -126, 260, -118, 161, -125, 172, -125, 172, -118, 260, -126)
+vertices = PackedVector2Array(365.102, 44, -1.72656, 44, 0.75, -51, 161, -51, 366.891, -126, 260, -118, 161, -125, 172, -125, 172, -118, 260, -126)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(3, 6, 7, 8), PackedInt32Array(5, 9, 4), PackedInt32Array(5, 3, 8)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(151, -135, 182, -135, 182, -128, 250, -128, 250, -136, 318, -136, 318, -1, -9, 0, -9, -61, 151, -61)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(151, -135, 182, -135, 182, -128, 250, -128, 250, -136, 377, -136, 375, 54, -12, 54, -9, -61, 151, -61)])
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ke1rn"]
 radius = 7.0
