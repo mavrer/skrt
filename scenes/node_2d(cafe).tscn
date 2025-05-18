@@ -59,7 +59,7 @@ y_sort_enabled = true
 [node name="TileMapLayer3" type="TileMapLayer" parent="YSortcafe"]
 y_sort_enabled = true
 position = Vector2(-183, 76)
-tile_map_data = PackedByteArray("AAAOAPf/AAAIAAoAABAMAPf/AAAIAAoAAAAAAPf/AAALAAoAAAABAPf/AAALAAoAAAADAPf/AAAGABAAAAAAAPv/AAALAAoAAAABAPv/AAALAAoAAAACAPv/AAALAAoAAAADAPv/AAALAAoAAAAEAPv/AAALAAoAAAAFAPv/AAALAAoAAAAGAPv/AAALAAoAAAAHAPv/AAALAAoAAAAAAP7/AAAEAAwAAAACAP7/AAAGAAwAAAAFAP7/AAAEAAwAAAAHAP7/AAAEAAwAAAAOAP7/AAAEAAwAAAAQAP7/AAAEAAwAAAAFAPf/AAAPAAoAAAAJAPj/AAAJAA0AAAA=")
+tile_map_data = PackedByteArray("AAAOAPf/AAAIAAoAABAMAPf/AAAIAAoAAAAAAPf/AAALAAoAAAABAPf/AAALAAoAAAADAPf/AAAGABAAAAAAAPv/AAALAAoAAAABAPv/AAALAAoAAAACAPv/AAALAAoAAAADAPv/AAALAAoAAAAEAPv/AAALAAoAAAAFAPv/AAALAAoAAAAGAPv/AAALAAoAAAAHAPv/AAALAAoAAAACAP7/AAAGAAwAAAAFAP7/AAAEAAwAAAAHAP7/AAAEAAwAAAAOAP7/AAAEAAwAAAAQAP7/AAAEAAwAAAAFAPf/AAAPAAoAAAAJAPj/AAAJAA0AAAAAAP7/AAAEAAwAAAA=")
 tile_set = ExtResource("1_jeuxh")
 
 [node name="TileMapLayer4" type="TileMapLayer" parent="YSortcafe"]
@@ -73,6 +73,7 @@ y_sort_enabled = true
 position = Vector2(0, -1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 position = Vector2(-183, 74)
 navigation_polygon = SubResource("NavigationPolygon_npm0j")
 
@@ -103,6 +104,7 @@ offset_bottom = 31.0
 texture_normal = ExtResource("3_ataqq")
 
 [node name="Points" type="Node2D" parent="."]
+visible = false
 
 [node name="SpawnPoint" type="Marker2D" parent="Points"]
 position = Vector2(115, -47)

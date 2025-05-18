@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://ciqq65c8nib0w"]
+[gd_scene load_steps=16 format=4 uid="uid://ciqq65c8nib0w"]
 
 [ext_resource type="Texture2D" uid="uid://c8576rt5srp8a" path="res://graphic/assets/eskspres-cieniowanie.png" id="1_lfxcp"]
 [ext_resource type="Script" uid="uid://cdu8dy4p6djgh" path="res://scripts/node_2d(ex).gd" id="1_xm8j6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c8rdqpmmm7jvw" path="res://graphic/assets/buttons/0.5.png" id="4_jwuh0"]
 [ext_resource type="Texture2D" uid="uid://gnj63cxlghyn" path="res://graphic/assets/buttons/0.5hovered.png" id="6_lnjhl"]
 [ext_resource type="Texture2D" uid="uid://bn571ynff61mr" path="res://graphic/assets/buttons/1hovered.png" id="7_ldgao"]
+[ext_resource type="Texture2D" uid="uid://c2j1n0of0t747" path="res://graphic/assets/buttons/1.png" id="7_lnjhl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0oxxg"]
 texture = ExtResource("1_lfxcp")
@@ -268,6 +269,7 @@ offset_left = -50.0
 offset_top = -228.0
 offset_right = -34.0
 offset_bottom = -212.0
+texture_pressed = ExtResource("7_lnjhl")
 texture_hover = ExtResource("7_ldgao")
 
 [node name="b3" type="TextureButton" parent="Control"]
@@ -294,6 +296,7 @@ offset_left = 22.0
 offset_top = -228.0
 offset_right = 38.0
 offset_bottom = -212.0
+texture_pressed = ExtResource("7_lnjhl")
 texture_hover = ExtResource("7_ldgao")
 
 [node name="b6" type="TextureButton" parent="Control"]
@@ -311,6 +314,7 @@ offset_left = 83.0
 offset_top = -187.0
 offset_right = 99.0
 offset_bottom = -171.0
+texture_pressed = ExtResource("7_lnjhl")
 texture_hover = ExtResource("7_ldgao")
 
 [node name="Gotowe" type="TextureButton" parent="Control"]
