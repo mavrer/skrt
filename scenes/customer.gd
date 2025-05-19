@@ -109,7 +109,7 @@ func on_order_done():
 func move_to_seat() -> void:
 	moving = true
 
-	# najpierw przejście do QueueSeat (środek)
+	# najpierw przejście do QueueSeat
 	var middle = get_cafe().get_queue_seat_position()
 	target = middle
 	agent.target_position = target
@@ -123,10 +123,9 @@ func move_to_seat() -> void:
 	update_walk_animation(middle, seat_pos)
 	await agent.navigation_finished
 
-	# Zniknięcie NPC z widocznego miejsca
 
 
-# Przejście do miejsca picia (D1, D2, ...)
+# Przejście do miejsca picia
 	var marker_name = Global.npc_drink_positions.get(npc_name, null)
 	if marker_name:
 		var marker_path = "GameRoot/Drink/Positions/" + marker_name

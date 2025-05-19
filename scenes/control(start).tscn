@@ -253,7 +253,6 @@ tile_set = SubResource("TileSet_k614x")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7jcr1")
-volume_db = -63.818
 autoplay = true
 
 [node name="Control" type="Control" parent="."]

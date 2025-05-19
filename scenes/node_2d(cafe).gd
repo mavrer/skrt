@@ -17,9 +17,7 @@ func _ready():
 	cafe_timer.timeout.connect(_on_global_timer_timeout)
 	cafetoex.pressed.connect(on_espresso_button_pressed)
 
-# -------------------------------
-# Funkcje pomocnicze do markerów
-# -------------------------------
+
 
 func get_marker_position(path: String) -> Vector2:
 	var node = get_node_or_null(path)
@@ -58,9 +56,7 @@ func get_seat_position(name: String) -> Vector2:
 	var seat_node = seat.get_node_or_null(seat_marker_name)
 	return seat_node.global_position if seat_node else Vector2.ZERO
 
-# -------------------------------
-# NPC Zarządzanie
-# -------------------------------
+#npc======
 
 var elapsed_time := 0
 var npc_index := 0
@@ -69,7 +65,6 @@ var current_queue = []
 var npc_list = [
 	{"name": "Astrid", "animation": "res://graphic/anim/astrid.tres", "spawn_time": 10},
 	{"name": "Caroline", "animation": "res://graphic/anim/caroline.tres", "spawn_time": 15}
-	# Dodaj więcej postaci jeśli potrzeba
 ]
 
 func reset_timer():

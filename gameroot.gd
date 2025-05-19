@@ -6,7 +6,7 @@ extends Node
 
 @onready var player_scene := preload("res://scenes/Player.tscn")
 var player: Node2D = null
-var player_spawned := false  # Flaga czy gracz już istnieje
+var player_spawned := false  
 
 
 
@@ -23,7 +23,7 @@ func start_new_game():
 	else:
 		move_player_to_scene("cafe")
 
-	await get_tree().process_frame  # <-- odczekaj jedną klatkę
+	await get_tree().process_frame  
 	print("Player pos:", player.global_position, "Visible:", player.visible)
 
 	cafe.reset_timer()

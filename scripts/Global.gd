@@ -23,7 +23,6 @@ var npc_orders = {
 	"Caroline": "Latte"
 }
 
-# Przechowujemy ID markera (nazwa noda), NIE Vector2
 var npc_seat_markers := {
 	"Astrid": "S1",
 	"Caroline": "S2",
@@ -31,8 +30,8 @@ var npc_seat_markers := {
 }
 
 var npc_drink_positions := {
-	"Astrid": "D1",  # <- wpisz pozycję z markera D1
-	"Caroline": "D2",  # <- wpisz pozycję z markera D2
+	"Astrid": "D1",
+	"Caroline": "D2",  
 	# itd.
 }
 
