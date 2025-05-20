@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://bgykdbsbfvrog"]
+[gd_scene load_steps=10 format=4 uid="uid://bgykdbsbfvrog"]
 
 [ext_resource type="Script" uid="uid://dkhps1nd03dhf" path="res://scenes/node_2d(cafe).gd" id="1_h51gp"]
 [ext_resource type="TileSet" uid="uid://dc0xd5vly0tiy" path="res://scenes/node_2d(cafe).tres" id="1_jeuxh"]
-[ext_resource type="Texture2D" uid="uid://dnhkkahp6v5fs" path="res://graphic/assets/coffe_beans.png" id="3_ataqq"]
 [ext_resource type="Texture2D" uid="uid://cbhukiqhip6pu" path="res://graphic/assets/interior.png" id="3_ke1rn"]
 [ext_resource type="Shape2D" uid="uid://b3y33cppmwidh" path="res://scenes/stolykolizja.tres" id="3_npm0j"]
 [ext_resource type="Script" uid="uid://cg1ydqfitoitt" path="res://scenes/order_trigger_area.gd" id="6_ke1rn"]
@@ -430,10 +429,9 @@ tile_map_data = PackedByteArray("AAD+//b/AAAIABgAAAD+//f/AAAIABkAAAD///b/AAAIABg
 tile_set = SubResource("TileSet_ataqq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 visible = false
@@ -486,7 +484,7 @@ collision_mask = 3
 script = ExtResource("6_ke1rn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrderTriggerArea"]
-position = Vector2(-57, -30)
+position = Vector2(-49, -17)
 shape = SubResource("CircleShape2D_ke1rn")
 
 [node name="Control" type="Control" parent="."]
@@ -499,11 +497,10 @@ offset_bottom = -63.0
 
 [node name="CafeToEx" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = -2.0
-offset_top = -1.0
-offset_right = 30.0
-offset_bottom = 31.0
-texture_normal = ExtResource("3_ataqq")
+offset_left = 2.0
+offset_top = 74.0
+offset_right = 34.0
+offset_bottom = 99.0
 
 [node name="Points" type="Node2D" parent="."]
 visible = false
