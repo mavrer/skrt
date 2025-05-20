@@ -15,4 +15,4 @@ position = Vector2(355, 146)
 position = Vector2(-2, 0)
 
 [node name="Express" parent="." instance=ExtResource("4_kxd06")]
-position = Vector2(-167, 525)
+position = Vector2(-174, 526)

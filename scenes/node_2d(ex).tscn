@@ -1,15 +1,16 @@
-[gd_scene load_steps=16 format=4 uid="uid://ciqq65c8nib0w"]
+[gd_scene load_steps=17 format=4 uid="uid://ciqq65c8nib0w"]
 
 [ext_resource type="Texture2D" uid="uid://c8576rt5srp8a" path="res://graphic/assets/eskspres-cieniowanie.png" id="1_lfxcp"]
 [ext_resource type="Script" uid="uid://cdu8dy4p6djgh" path="res://scripts/node_2d(ex).gd" id="1_xm8j6"]
 [ext_resource type="Texture2D" uid="uid://orqhlruw1egd" path="res://graphic/assets/task_button.png" id="2_0oxxg"]
 [ext_resource type="Texture2D" uid="uid://csgstucoe8vec" path="res://graphic/assets/buttons/2.png" id="3_0f23n"]
-[ext_resource type="Texture2D" uid="uid://dnhkkahp6v5fs" path="res://graphic/assets/coffe_beans.png" id="4_2pvcp"]
 [ext_resource type="Texture2D" uid="uid://cemq3svtokcia" path="res://graphic/assets/buttons/2hovered.png" id="4_fg164"]
 [ext_resource type="Texture2D" uid="uid://c8rdqpmmm7jvw" path="res://graphic/assets/buttons/0.5.png" id="4_jwuh0"]
 [ext_resource type="Texture2D" uid="uid://gnj63cxlghyn" path="res://graphic/assets/buttons/0.5hovered.png" id="6_lnjhl"]
 [ext_resource type="Texture2D" uid="uid://bn571ynff61mr" path="res://graphic/assets/buttons/1hovered.png" id="7_ldgao"]
 [ext_resource type="Texture2D" uid="uid://c2j1n0of0t747" path="res://graphic/assets/buttons/1.png" id="7_lnjhl"]
+[ext_resource type="Texture2D" uid="uid://cyrdo107dex34" path="res://graphic/assets/buttons/close.png" id="10_ldgao"]
+[ext_resource type="Texture2D" uid="uid://bbgje5gaimm3f" path="res://graphic/assets/buttons/close-clicked.png" id="11_5hias"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0oxxg"]
 texture = ExtResource("1_lfxcp")
@@ -222,7 +223,7 @@ atlas = ExtResource("2_0oxxg")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0f23n"]
-atlas = ExtResource("4_2pvcp")
+atlas = ExtResource("10_ldgao")
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(64, 145)
@@ -328,10 +329,12 @@ texture_pressed = SubResource("AtlasTexture_xm8j6")
 
 [node name="ExToCafe" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = -231.0
-offset_top = -198.0
-offset_right = -199.0
-offset_bottom = -166.0
+offset_left = -223.0
+offset_top = -211.0
+offset_right = -207.0
+offset_bottom = -195.0
+rotation = 0.00643571
 texture_normal = SubResource("AtlasTexture_0f23n")
+texture_pressed = ExtResource("11_5hias")
 
 [connection signal="pressed" from="Control/ExToCafe" to="." method="_on_ex_to_cafe_pressed"]
