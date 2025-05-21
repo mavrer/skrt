@@ -1878,4 +1878,5 @@ tile_map_data = PackedByteArray("AAD6/wAAAwARAB8AAAD7/wAAAwASAB8AAAD8/wAAAwATAB8
 tile_set = SubResource("TileSet_vcyb2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 zoom = Vector2(1.25, 1)
