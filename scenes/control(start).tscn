@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://b0ebftpgtmh23"]
+[gd_scene load_steps=13 format=4 uid="uid://b0ebftpgtmh23"]
 
 [ext_resource type="Script" uid="uid://cc8e68qq308p3" path="res://scenes/node_2d(start).gd" id="1_7q2hp"]
 [ext_resource type="AudioStream" uid="uid://bcihehqici04f" path="res://music/start.ogg" id="2_7jcr1"]
 [ext_resource type="Texture2D" uid="uid://cd1baguj42ovq" path="res://graphic/assets/start.png" id="2_8u2n3"]
+[ext_resource type="Texture2D" uid="uid://cxrc3dy7gioql" path="res://graphic/assets/smallPlayButton.png" id="4_8oyvr"]
+[ext_resource type="Texture2D" uid="uid://cyrdo107dex34" path="res://graphic/assets/buttons/close.png" id="5_pmlb3"]
+[ext_resource type="Texture2D" uid="uid://bbgje5gaimm3f" path="res://graphic/assets/buttons/close-clicked.png" id="6_k614x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8oyvr"]
 texture = ExtResource("2_8u2n3")
@@ -236,7 +239,16 @@ texture = ExtResource("2_8u2n3")
 [sub_resource type="TileSet" id="TileSet_k614x"]
 sources/0 = SubResource("TileSetAtlasSource_pmlb3")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bbom"]
+atlas = ExtResource("4_8oyvr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8oyvr"]
+atlas = ExtResource("4_8oyvr")
+region = Rect2(16, 0, 16, 0)
+
 [node name="Node2D" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_7q2hp")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -272,14 +284,44 @@ offset_right = 298.0
 offset_bottom = 283.16
 
 [node name="Play" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 4.012
+anchor_top = -2.987
+anchor_right = 4.012
+anchor_bottom = -2.987
+offset_left = -29.48
+offset_top = -7.51999
+offset_right = 29.52
+offset_bottom = 5.48001
+
+[node name="ContinueGame" type="TextureButton" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 4.0
+anchor_top = -2.55
+anchor_right = 4.0
+anchor_bottom = -2.55
+offset_left = -8.0
+offset_top = -7.99999
+offset_right = 8.0
+offset_bottom = 8.00001
+texture_normal = SubResource("AtlasTexture_1bbom")
+texture_pressed = SubResource("AtlasTexture_8oyvr")
+
+[node name="Exit" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = 129.0
-offset_top = -128.0
-offset_right = 191.0
-offset_bottom = -112.0
+offset_left = 152.0
+offset_top = -93.0
+offset_right = 168.0
+offset_bottom = -77.0
+texture_normal = ExtResource("5_pmlb3")
+texture_pressed = ExtResource("6_k614x")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(167, -104)
 zoom = Vector2(4, 4)
 
 [connection signal="pressed" from="Control/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control/ContinueGame" to="." method="_on_continue_game_pressed"]
+[connection signal="pressed" from="Control/Exit" to="." method="_on_exit_pressed"]
