@@ -159,8 +159,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_7lng0")
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3.5, 3.5)
+[node name="FollowCam" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

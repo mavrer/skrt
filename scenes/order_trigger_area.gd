@@ -5,6 +5,7 @@ extends Area2D
 func _on_body_entered(body: Node) -> void:
 	if body is Player:
 		if Global.customer_queue.is_empty():
+			print("pusta kolejka")
 			return
 
 		var npc = Global.customer_queue[0]

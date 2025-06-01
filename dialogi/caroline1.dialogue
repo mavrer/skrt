@@ -1,0 +1,12 @@
+~ start
+Caroline: [[Still asking about Lucas?|Hello.]]
+You: Did he say anything before he vanished?
+Caroline: He was acting strange lately.
+- Press her
+	You: Strange how?
+	Caroline: Like he wanted to tell me something... but he never got the chance.
+	Someone interrupted us, and then he was just... gone.
+- Be polite
+	You: Maybe he had something personal going on.
+	Caroline: Or something he couldn't talk about. Either way, it didn’t feel right.
+=> END

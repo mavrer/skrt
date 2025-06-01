@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=4 uid="uid://cruusqros15ib"]
+[gd_scene load_steps=14 format=4 uid="uid://cruusqros15ib"]
 
+[ext_resource type="Script" uid="uid://c3xbxe6g74ttn" path="res://scenes/node_2d(home).gd" id="1_nftia"]
 [ext_resource type="Texture2D" uid="uid://cbhukiqhip6pu" path="res://graphic/assets/interior.png" id="1_uf6k8"]
 [ext_resource type="Texture2D" uid="uid://b3566kk2hjs84" path="res://graphic/assets/exterior+.png" id="2_nftia"]
 
@@ -2774,6 +2775,7 @@ sources/1 = SubResource("TileSetAtlasSource_s5jwq")
 
 [node name="Node2D(home)" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_nftia")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_lt6lo")
@@ -2787,17 +2789,38 @@ tile_set = SubResource("TileSet_lt6lo")
 tile_map_data = PackedByteArray("AAANAAIAAAAFAB0AAAAMAAIAAAAFAB0AAAALAAIAAAAFAB0AAAAKAAIAAAAFAB0AAAAJAAIAAAAFAB0AAAAIAAIAAAADAB0AAAAIAAYAAAAHAB0AAAAHAAYAAAAFAB0AAAD//wYAAAAFAB0AAAAAAAYAAAAFAB0AAAABAAYAAAAFAB0AAAACAAYAAAAFAB0AAAADAAYAAAAFAB0AAAAEAAYAAAAFAB0AAAD3//3/AAABABgAAAD3//7/AAABABkAAAD3////AAABABoAAAD3/wAAAAABABsAAAD3/wEAAAABABwAAAD2//7/AAAAABkAAAD+//7/AAACABkAAAD+////AAACABoAAAD+/wAAAAACABsAAAD+//3/AAACAB4AAAD+/wEAAAAbABEAAAD+/wIAAAAbABIAAAD+/wQAAAAHAB0AAAD+/wMAAAAEABwAAAD2/wQAAAAAAB0AAAD3/wQAAAABAB0AAAD9/wQAAAAGAB0AAAD+/wUAAAAAABgAAAAFAAYAAAAFAB0AAAAGAAYAAAAFAB0AAAAIAAMAAAAFAB0AAFAIAAQAAAAFAB0AAFAIAAUAAAAFAB0AAFAJAAUAAAAAABgAAAAKAAUAAAAAABgAAAALAAUAAAAAABgAAAAMAAUAAAAAABgAAAANAAUAAAAAABgAAAANAAYAAAAAABgAAAAOAAMAAAAAABgAAAAOAAQAAAAAABgAAAAOAAUAAAAAABgAAAAOAAYAAAAAABgAAAAOAAcAAAAAABgAAAA=")
 tile_set = SubResource("TileSet_lt6lo")
 
-[node name="TileMapLayer3" type="TileMapLayer" parent="TileMap"]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(40, 1)
+zoom = Vector2(3, 3)
+
+[node name="Bed" type="TextureButton" parent="."]
+offset_left = 194.0
+offset_top = -45.0
+offset_right = 224.0
+offset_bottom = -5.0
+
+[node name="HomeCity" type="TextureButton" parent="."]
+offset_left = 178.0
+offset_top = 48.0
+offset_right = 192.0
+offset_bottom = 80.0
+
+[node name="YSortHome" type="Node2D" parent="."]
+
+[node name="TileMapLayer3" type="TileMapLayer" parent="YSortHome"]
 tile_map_data = PackedByteArray("AAD+/wIAAAAEABsAAAD+/wMAAAAEABwAAAAIAAUAAAAAABoAADD8/wQAAAACABgAADD7/wQAAAACABgAADD6/wQAAAACABgAADD5/wQAAAACABgAADD4/wQAAAACABgAADAHAAIAAAAbAAIAAAA=")
 tile_set = SubResource("TileSet_nftia")
 
-[node name="TileMapLayer4" type="TileMapLayer" parent="TileMap"]
+[node name="TileMapLayer4" type="TileMapLayer" parent="YSortHome"]
 tile_map_data = PackedByteArray("AAD6/wMAAAABABAAAAD9////AAADAAIAAAD6////AAAAAAMAAAADAPz/AAAGAAQAAAD6//7/AAAFAAcAAAD///3/AAAAAAsAAAAGAAQAAAAFAAsAAAABAP3/AAACAAcAAAAFAAQAAAASAAsAAAACAP3/AAAXAAUAAAAFAPz/AAAKAAYAAAAMAP7/AAAPAAEAAAAKAP3/AAACAAoAAAAIAPz/AAAGAAQAAAAMAAEAAAAIAAAAAAAAAAQAAAAIAAIAAAAFAAIAAAAHAAsAAAALAAEAAAAdAAEAAAD//wAAAAAdAAEAAAD//wIAAAAdAAAAAAAJAAEAAAAHAAgAAAACAAUAAAAHAAgAAAA=")
 tile_set = SubResource("TileSet_qle6e")
 
-[node name="TileMapLayer5" type="TileMapLayer" parent="TileMap"]
+[node name="TileMapLayer5" type="TileMapLayer" parent="YSortHome"]
 tile_map_data = PackedByteArray("AAD4/wMAAAAOAAYAAAD8/wMAAAAOAAgAAAD4////AAANAA0AAAD+////AAANAA0AAAABAP7/AAAOAA4AAAAAAP7/AAANAA8AAAD7/wMAAAAUAAMAAAD5/wMAAAAUAAMAAAAHAPz/AAALABAAAAAHAPv/AAAMABAAAAALAAMAAAAGAAIAAAALAAQAAAAGAAMAAAAHAAUAAAAeAAAAAAD3/wAAAAAfAAEAAAAKAPz/AAALAA8AAAALAPz/AAAMAA8AAAAKAP3/AAAGABUAAAD7/wIAAAAPAA8AAAD5/wIAAAAPAA8AABALAP3/AAAQAA4AAAADAAUAAAAKABQAAAD6/wMAAAAUAAQAAAAJAP3/AAAdAAUAAAD//wMAAQAfAAsAAAANAP3/AAAGABQAAAANAAEAAAAPABAAAAAAAP//AAANAA4AAAANAAAAAAAOAA8AAAAJAAEAAAARAAYAAAACAAUAAAAZAAIAAAA=")
 tile_set = SubResource("TileSet_s5jwq")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+[node name="PlayerSpawn" type="Marker2D" parent="YSortHome"]
+position = Vector2(47, 25)
+
+[connection signal="pressed" from="Bed" to="." method="_on_bed_pressed"]
+[connection signal="pressed" from="HomeCity" to="." method="_on_home_city_pressed"]

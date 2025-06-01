@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var npc_name: String = ""
 @export var animation_data: Resource
+@onready var drink_timer: Timer = $DrinkTimer
 
 var target: Vector2 = Vector2.ZERO
 var last_direction := Vector2.DOWN
@@ -11,16 +12,21 @@ var finished_drinking := false
 var can_talk := false
 var queue_index := -1
 var order_successful := false
-
+var exiting := false  # zabezpieczenie przed wielokrotnym move_to_exit()
+#var dialogue_resource = null
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var agent: NavigationAgent2D = $NavigationAgent2D
-@onready var area: Area2D = $InteractionArea
+@onready var area: Area2D = $InteractArea
+
+
 
 func _ready():
 	last_direction = Vector2.DOWN
 	load_animation_data()
 	agent.radius = 8
-	area.body_entered.connect(_on_interaction_area_body_entered)
+	#area.body_entered.connect(_on_interact_area_body_entered)
+	area.monitoring = false
+	DialogueManager.dialogue_finished.connect(_on_dialogue_finished)
 
 func load_animation_data():
 	if animation_data and animation_data is SpriteFrames:
@@ -45,7 +51,10 @@ func _physics_process(delta):
 			move_and_collide(velocity * delta)
 
 		if agent.is_navigation_finished():
+			print("Navigation finished for", npc_name)
+
 			stop_movement()
+			
 
 func update_animation(direction: Vector2):
 	if abs(direction.x) > abs(direction.y):
@@ -61,38 +70,30 @@ func update_walk_animation(from_position: Vector2, to_position: Vector2):
 func stop_movement():
 	moving = false
 	velocity = Vector2.ZERO
-
-	if sprite.animation.begins_with("walk_"):
-		sprite.stop()
-		sprite.frame = 1
-
-	if last_direction.x > 0:
-		sprite.animation = "walk_right"
-	elif last_direction.x < 0:
-		sprite.animation = "walk_left"
-	elif last_direction.y > 0:
-		sprite.animation = "walk_down"
-	else:
-		sprite.animation = "walk_up"
-
 	sprite.stop()
 	sprite.frame = 1
 
 func move_to_queue():
+	# 🔒 Zabezpieczenie przed dodaniem NPC drugi raz
+	if self in Global.customer_queue:
+		print("⚠️ NPC już jest w kolejce!")
+		return
+	
 	queue_index = Global.customer_queue.size()
 	Global.customer_queue.append(self)
 
 	var queue_pos = get_cafe().get_queue_position(queue_index)
+	print("➡️ Ruch NPC", npc_name, "do pozycji:", queue_pos)
 	target = queue_pos
 	agent.target_position = target
 	update_walk_animation(global_position, target)
 
 	moving = true
 	waiting_in_queue = true
-
 	await agent.navigation_finished
 	stop_movement()
 	sprite.frame = 0
+
 
 func process_queue():
 	Global.queue_size -= 1
@@ -103,100 +104,103 @@ func process_queue():
 		cust.agent.target_position = new_pos
 		cust.update_walk_animation(cust.global_position, new_pos)
 
-func on_order_done():
-	pass
 
 func move_to_seat() -> void:
 	moving = true
 
-	# najpierw przejście do QueueSeat
+	# Krok 1: Do środka kolejki
 	var middle = get_cafe().get_queue_seat_position()
 	target = middle
-	agent.target_position = target
-	update_walk_animation(global_position, target)
+	agent.target_position = middle
+	update_walk_animation(global_position, middle)
 	await agent.navigation_finished
+	
 
-	# potem do swojego stolika (S1, S2, ...)
+	# Krok 2: Do konkretnego miejsca (S1 lub S2)
 	var seat_pos = get_cafe().get_seat_position(npc_name)
 	target = seat_pos
 	agent.target_position = seat_pos
 	update_walk_animation(middle, seat_pos)
 	await agent.navigation_finished
 
-
-
-# Przejście do miejsca picia
-	var marker_name = Global.npc_drink_positions.get(npc_name, null)
-	if marker_name:
-		var marker_path = "GameRoot/Drink/Positions/" + marker_name
-		var marker_node = get_tree().root.get_node_or_null(marker_path)
-		if marker_node:
-			global_position = marker_node.global_position
-			play_drink_animation()
-			on_coffee_ready()
+	# Krok 3: Efekt siadania
+	sprite.position.y += 10
+	sprite.play("drink")
+	area.monitoring = true;
+	can_talk = true 
+	# Krok 4: Start timera i podpięcie funkcji zakończenia
+	var wait_time = 20.0 if order_successful else 10.0
+	drink_timer.wait_time = wait_time
+	drink_timer.timeout.connect(_on_drink_finished, CONNECT_ONE_SHOT)
+	drink_timer.start()
 	
+func _on_drink_finished():
+	print("Drink finished for", npc_name)
+	sprite.position.y -= 10
+	finished_drinking = true
+	await move_to_exit()
 
-
-
-
-
-
-func play_drink_animation():
-	var marker_name = Global.npc_drink_positions.get(npc_name, null)
-	if marker_name:
-		var marker_path = "GameRoot/Drink/Positions/" + marker_name
-		var marker_node = get_tree().root.get_node_or_null(marker_path)
-		if marker_node:
-			var drink_pos = marker_node.global_position
-			target = drink_pos
-			agent.target_position = drink_pos
-			sprite.play("drink")
-		
-
-
-func on_coffee_ready():
-	check_order_success()
-	if order_successful:
-		await get_tree().create_timer(10.0).timeout
-		if can_talk:
-			start_dialog()
-	else:
-		handle_wrong_order()
-
-func check_order_success():
-	if Global.order_successful:
-		order_successful = true
-		wait_for_player_interaction()
-
-func wait_for_player_interaction():
-	can_talk = true
-
-func start_dialog():
-	var dialogue_manager = get_node("/root/DialogueManager")
-	dialogue_manager.start_dialogue("res://dialogi/" + npc_name + "_dialogue.dialogue", { "npc_name": npc_name })
-	await get_tree().create_timer(5.0).timeout
-	move_to_exit()
 
 func move_to_exit():
+	if exiting:
+		return
+	exiting = true
+
 	var exit_pos = get_cafe().get_exit_position()
+	print(npc_name, " -> exit_pos:", exit_pos)
+
 	target = exit_pos
 	agent.target_position = exit_pos
 	update_walk_animation(global_position, exit_pos)
+
+	moving = true  # <- ważne, by _physics_process ruszył NPC
 	await agent.navigation_finished
+
 	queue_free()
 
-func handle_wrong_order():
-	sprite.play("drink")
-	await get_tree().create_timer(5.0).timeout
-	sprite.stop()
-	move_to_exit()
 
-func show_order():
-	if not is_inside_tree() or has_node("DialogueBubble"):
+func get_dialogue_path() -> String:
+	var dialogue_index = Global.npc_dialogue_counters.get(npc_name, 1)
+	print("wywolanie funkcji get dialogue path")
+	return "res://dialogi/" + npc_name.to_lower() + str(dialogue_index) + ".dialogue"
+
+
+
+
+func start_dialog():
+	can_talk = false
+
+	var npc_name = self.npc_name
+	var visit_count = Global.npc_dialogue_counters.get(npc_name, 1)
+	var dialogue_list = Global.dialogues.get(npc_name, [])
+
+	if dialogue_list.is_empty():
+		print("Brak dialogów dla NPC:", npc_name)
 		return
-	var order = Global.npc_orders.get(npc_name, "coffee")
-	var dialogue_manager = get_node("/root/DialogueManager")
-	dialogue_manager.start_dialogue("res://dialogi/orders.dialogue", { "order": order })
+
+	var index = clamp(visit_count - 1, 0, dialogue_list.size() - 1)
+	var dialogue = dialogue_list[index]
+	var file_name = dialogue.resource_path.get_file().get_basename()
+
+	print("Pokazuję dialog nr", index + 1, "dla", npc_name, "czyli:", file_name)
+
+	DialogueManager.show_example_dialogue_balloon(
+		dialogue,
+		"start",
+		[{ "npc_name": npc_name }]
+	)
+
+
+
+
+func _on_dialogue_finished():
+	print("Dialog zakończony dla", npc_name)
+	drink_timer.paused = false
+	if not Global.npc_dialogue_counters.has(npc_name):
+		Global.npc_dialogue_counters[npc_name] = 1
+	else:
+		Global.npc_dialogue_counters[npc_name] += 1
+		
 
 func move_to_marker(pos: Vector2):
 	moving = true
@@ -205,9 +209,17 @@ func move_to_marker(pos: Vector2):
 	agent.target_position = pos
 	update_walk_animation(global_position, pos)
 
-func _on_interaction_area_body_entered(body: Node2D):
-	if body.name == "Player" and order_successful:
-		can_talk = true
+
+func _on_interact_area_body_entered(body: Node2D) -> void:
+	print("Body entered InteractArea:", body.name)
+	print("order_successful:", order_successful, "can_talk:", can_talk, "finished_drinking:", finished_drinking)
+
+
+	if body.name == "Player" and order_successful and can_talk and not finished_drinking:
+		print("Starting dialog for", npc_name)
+		drink_timer.paused = true
+		start_dialog()
+
 
 func get_cafe() -> Node:
 	return get_tree().root.get_node("GameRoot/Cafe")
