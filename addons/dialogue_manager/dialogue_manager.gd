@@ -11,6 +11,8 @@ const DMCompiler = preload("./compiler/compiler.gd")
 const DMCompilerResult = preload("./compiler/compiler_result.gd")
 const DMResolvedLineData = preload("./compiler/resolved_line_data.gd")
 
+signal dialogue_finished
+
 
 ## Emitted when a dialogue balloon is created and dialogue starts
 signal dialogue_started(resource: DialogueResource)
@@ -465,6 +467,9 @@ func _start_balloon(balloon: Node, resource: DialogueResource, title: String, ex
 
 	dialogue_started.emit(resource)
 	bridge_dialogue_started.emit(resource)
+	
+	balloon.tree_exited.connect(func():
+		emit_signal("dialogue_finished"))
 
 
 # Get the path to the example balloon

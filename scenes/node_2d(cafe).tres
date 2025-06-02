@@ -180,6 +180,7 @@ texture = ExtResource("2_sy7wc")
 27:18/0 = 0
 1:0/size_in_atlas = Vector2i(2, 2)
 1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 6)
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7.55407, 10.7915, 5.93534, 10.9714, 15.0258, 3.14729, 15.2288, -2.43661, -14.7484, -2.33816, -14.3887, 3.23746)
 5:0/0 = 0
 5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.57562, 6.29506, 4.13675, 6.29506, 5.2159, -1.07915, -5.93534, -1.25901)

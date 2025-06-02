@@ -1,18 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://u5m3kvbk24x6"]
+[gd_scene load_steps=9 format=3 uid="uid://u24ke2v0pltt"]
 
 [ext_resource type="Script" uid="uid://d4ablq3fm5aij" path="res://gameroot.gd" id="1_hirbl"]
 [ext_resource type="PackedScene" uid="uid://bgykdbsbfvrog" path="res://scenes/node_2d(cafe).tscn" id="3_drpm8"]
 [ext_resource type="PackedScene" uid="uid://ciqq65c8nib0w" path="res://scenes/node_2d(ex).tscn" id="4_kxd06"]
 [ext_resource type="PackedScene" uid="uid://b0ebftpgtmh23" path="res://scenes/control(start).tscn" id="5_8pgip"]
+[ext_resource type="PackedScene" uid="uid://cruusqros15ib" path="res://scenes/node_2d(home).tscn" id="5_drpm8"]
+[ext_resource type="PackedScene" uid="uid://bivejspuc5eeg" path="res://scenes/node_2d(city).tscn" id="6_kxd06"]
+[ext_resource type="PackedScene" uid="uid://d0t1qieeyx66r" path="res://scenes/daynumber.tscn" id="7_kxd06"]
+[ext_resource type="PackedScene" uid="uid://c7g1u8wbfewfg" path="res://scenes/ending.tscn" id="8_xpglq"]
 
 [node name="GameRoot" type="Node2D"]
 script = ExtResource("1_hirbl")
 
 [node name="Start" parent="." instance=ExtResource("5_8pgip")]
-position = Vector2(355, 146)
+position = Vector2(552, -253)
 
 [node name="Cafe" parent="." instance=ExtResource("3_drpm8")]
-position = Vector2(-2, 0)
+position = Vector2(0, 0)
 
 [node name="Express" parent="." instance=ExtResource("4_kxd06")]
-position = Vector2(-174, 526)
+position = Vector2(-636, 875)
+
+[node name="Home" parent="." instance=ExtResource("5_drpm8")]
+position = Vector2(-877, -282)
+
+[node name="City" parent="." instance=ExtResource("6_kxd06")]
+position = Vector2(2072, -297)
+
+[node name="Day_Number" parent="." instance=ExtResource("7_kxd06")]
+
+[node name="Ending" parent="." instance=ExtResource("8_xpglq")]
