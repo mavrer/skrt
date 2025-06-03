@@ -1,0 +1,64 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="game"
+run/main_scene="uid://u24ke2v0pltt"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/Global.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+
+[dialogue_manager]
+
+runtime/balloon_path="res://scenes/copydialogueballon/balloon.tscn"
+
+[display]
+
+window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
+[input]
+
+move_up={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"location":0,"echo":false,"script":null)
+]
+}
+move_down={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
+]
+}
+move_right={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"location":0,"echo":false,"script":null)
+]
+}
+move_left={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"location":0,"echo":false,"script":null)
+]
+}
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://dialogi/dialogue.dialogue", "res://dialogi/orders.dialogue", "res://marcus1.dialogue", "res://dialogi/freya1.dialogue", "res://dialogi/james1.dialogue", "res://dialogi/marcus1.dialogue", "res://dialogi/suzie1.dialogue", "res://caroline1.dialogue", "res://henry1.dialogue", "res://dialogi/caroline1.dialogue", "res://dialogi/henry1.dialogue", "res://dialogi/marcus2.dialogue", "res://dialogi/james2.dialogue", "res://dialogi/marcus3.dialogue", "res://dialogi/james3.dialogue", "res://dialogi/clara1.dialogue", "res://dialogi/astrid1.dialogue", "res://dialogi/james4.dialogue", "res://dialogi/ezequiel1.dialogue", "res://dialogi/pierce2.dialogue", "res://dialogi/pierce1.dialogue", "res://dialogi/marcus4.dialogue", "res://dialogi/dante1.dialogue", "res://dialogi/clara2.dialogue", "res://dialogi/caroline2.dialogue", "res://dialogi/dante2.dialogue", "res://dialogi/ending.dialogue", "res://dialogi/whoismurderer.dialogue", "res://dialogi/1ending.dialogue", "res://dialogi/2ending.dialogue", "res://dialogi/3ending.dialogue", "res://dialogi/history.dialogue", "res://dialogue.dialogue")
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
