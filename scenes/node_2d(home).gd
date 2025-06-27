@@ -1,8 +1,6 @@
 extends Node2D
 @onready var homecity := $HomeCity
 
-
-
 func _on_home_city_pressed():
 	get_node("/root/GameRoot").show_location("city", "YSortCity", "PlayerSpawn1")
 

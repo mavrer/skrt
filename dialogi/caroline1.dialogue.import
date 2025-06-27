@@ -3,13 +3,13 @@
 importer="dialogue_manager"
 importer_version=15
 type="Resource"
-uid="uid://blgmessuiufay"
-path="res://.godot/imported/caroline1.dialogue-f8e48ea489bbd36dae13de5c0bc17723.tres"
+uid="uid://b48lq0wxicnu6"
+path="res://.godot/imported/caroline1.dialogue-5c6bbee8e97033ad936b2147ad5fd2de.tres"
 
 [deps]
 
-source_file="res://dialogi/caroline1.dialogue"
-dest_files=["res://.godot/imported/caroline1.dialogue-f8e48ea489bbd36dae13de5c0bc17723.tres"]
+source_file="res://caroline1.dialogue"
+dest_files=["res://.godot/imported/caroline1.dialogue-5c6bbee8e97033ad936b2147ad5fd2de.tres"]
 
 [params]
 

@@ -1,11 +1,32 @@
 ~ start
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => start
-- End the conversation => END
-Nathan: For more information see the online documentation.
+match Global.ending_choice
+	when 1 
+		You believed Pierce.
+		You made the same mistake as Lucas… Now you’re both trapped in her mansion, forced to brew perfect coffee day after day… just for her.  
+		The café? It no longer exists.
+		BAD ENDING
+
+	when 0
+		WHO KILLED LUCAS?
+		- Caroline
+		- Isabell
+		- Pierce
+			set Global.ending_choice="2" 
+		- Dante
+		- Clara
+		=> next
+
+~ next
+match Global.ending_choice
+	when 2
+		The truth came out. We exposed Pierce and freed Lucas.  
+		The café is alive again, and the smell of freshly ground coffee fills the air like old times.
+		Lucas is back — along with his legendary coffee.
+		Welcome back, master!
+	when 0
+		You avoided the trap, but failed to uncover the truth.
+		Lucas never returned.  
+		The café gradually emptied — without him the atmosphere grew heavy, and the taste of coffee… bland. Eventually, the place closed for good.  
+		Not every story ends happily. Sometimes all that’s left is an empty cup and a sense of longing.
+
 => END

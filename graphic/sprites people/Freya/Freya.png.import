@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn4hj28ia5ukp"
-path="res://.godot/imported/kawiarnia.png-6d6a59cb548d2a8b2d56f79d52a91a37.ctex"
+uid="uid://dmdwdhc5rfj7o"
+path="res://.godot/imported/Freya.png-f20c25e81db8c07ad6bb841084386be1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphic/kawiarnia.png"
-dest_files=["res://.godot/imported/kawiarnia.png-6d6a59cb548d2a8b2d56f79d52a91a37.ctex"]
+source_file="res://graphic/sprites people/Freya/Freya.png"
+dest_files=["res://.godot/imported/Freya.png-f20c25e81db8c07ad6bb841084386be1.ctex"]
 
 [params]
 

@@ -457,7 +457,7 @@ y_sort_enabled = true
 position = Vector2(0, -1)
 
 [node name="PlayerSpawn" type="Marker2D" parent="YSortCafe"]
-position = Vector2(-136, -26)
+position = Vector2(-71, -29)
 
 [node name="CafeTimer" type="Timer" parent="."]
 

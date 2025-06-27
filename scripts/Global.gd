@@ -8,18 +8,12 @@ var current_customer = null
 
 var dialogue_balloon_manager: Node = null
 var queue_size := 0
-var npc_dialogue_counters: Dictionary = {}  # np. { "James": 2 }
+var npc_dialogue_counters: Dictionary = {}  
 
-#ending
 var current_day: int = 1
-# Trzyma aktualny zasób dialogu
 var current_dialogue_file: Resource = null
+var ending_choice :=0
 
-# Czy gracz wybrał "Yes" w pierce2.dialogue
-var chose_yes: bool = false
-
-# Czy gracz wskazał Pierce jako porywacza
-var chose_pierce_in_whois: bool = false
 
 func _ready():
 	dialogue_balloon_manager = get_node("/root/DialogueManager")
@@ -39,10 +33,10 @@ var npc_orders = {
 	"Freya": "Latte",
 	"Caroline": "Single espresso",
 	"Henry": "Espresso doppio",
-	"Clara":"Cappucino",
+	"Clara":"Single espresso",
 	"Pierce":"Flat white",
 	"Ezequiel":"Espresso doppio",
-	"Dante":"Cappucino",
+	"Dante":"Cappuccino",
 	
 }
 

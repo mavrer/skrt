@@ -13,14 +13,10 @@ extends Node2D
 @onready var cafecity = $CafeCity
 
 
-# ========== READY ==========
+
 func _ready():
 	cafe_timer.timeout.connect(_on_global_timer_timeout)
 	cafetoex.pressed.connect(on_espresso_button_pressed)
-
-
-
-# ========== POZYCJE (OSTATECZNA WERSJA) ==========
 
 func get_marker_position(path: String) -> Vector2:
 	var node = get_node_or_null(path)
@@ -50,7 +46,7 @@ func get_seat_position(name: String) -> Vector2:
 	var seat_node = seat.get_node_or_null(seat_marker_name)
 	return seat_node.global_position if seat_node else Vector2.ZERO
 
-# ========== ZMIENNE NPC ==========
+##NPC
 var elapsed_time := 0
 var npc_index := 0
 var current_queue = []
@@ -89,7 +85,6 @@ var daily_npc_lists = {
 	]
 }
 
-# ========== LOGIKA DNIA ==========
 func start_day(day: int):
 	npc_list = daily_npc_lists.get(day, [])
 	reset_timer()
@@ -109,11 +104,9 @@ func start_timer():
 func pause_timer():
 	cafe_timer.stop()
 
-# ========== PRZYCISK ==========
 func on_espresso_button_pressed():
 	get_node("/root/GameRoot").show_location("express")
 
-# ========== TIMER / SPAWN NPC ==========
 func _on_global_timer_timeout():
 	elapsed_time += 1
 
@@ -124,13 +117,11 @@ func _on_global_timer_timeout():
 func spawn_customer(npc_data: Dictionary):
 	var name = npc_data["name"]
 
-	# Zwiększ licznik wizyt NPC
 	if not Global.npc_dialogue_counters.has(name):
 		Global.npc_dialogue_counters[name] = 1
 	else:
 		Global.npc_dialogue_counters[name] += 1
 
-	# Tworzenie NPC-a jak wcześniej
 	var new_npc = preload("res://scenes/customer.tscn").instantiate()
 	new_npc.npc_name = name
 	new_npc.animation_data = load(npc_data["animation"])
@@ -142,6 +133,10 @@ func spawn_customer(npc_data: Dictionary):
 	new_npc.move_to_queue()
 
 
-
 func _on_cafe_city_pressed():
-	get_node("/root/GameRoot").show_location("city", "YSortCity", "PlayerSpawn2")
+	var game_root = get_node("/root/GameRoot")
+
+	if Global.current_day == 5 and game_root.pierce_out:
+		game_root.show_location("ending")
+	else:
+		game_root.show_location("city", "YSortCity", "PlayerSpawn2")

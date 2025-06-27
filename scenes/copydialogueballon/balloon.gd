@@ -7,6 +7,7 @@ extends CanvasLayer
 ## The action to use to skip typing the dialogue
 @export var skip_action: StringName = &"ui_cancel"
 
+
 ## The dialogue resource
 var resource: DialogueResource
 
@@ -41,10 +42,11 @@ var mutation_cooldown: Timer = Timer.new()
 
 ## The base balloon anchor
 @onready var balloon: Control = %Balloon
-
 ## The label showing the name of the currently speaking character
 @onready var character_label: RichTextLabel = %CharacterLabel
 
+##moje
+@onready var portrait: TextureRect=%portrait
 ## The label showing the currently spoken dialogue
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 
@@ -87,17 +89,28 @@ func start(dialogue_resource: DialogueResource, title: String, extra_game_states
 	self.dialogue_line = await resource.get_next_dialogue_line(title, temporary_game_states)
 
 
-## Apply any changes to the balloon given a new [DialogueLine].
 func apply_dialogue_line() -> void:
 	mutation_cooldown.stop()
-
 	is_waiting_for_input = false
+
 	balloon.focus_mode = Control.FOCUS_ALL
 	balloon.grab_focus()
 
 	character_label.visible = not dialogue_line.character.is_empty()
 	character_label.text = tr(dialogue_line.character, "dialogue")
 
+	var npc_name := dialogue_line.character.strip_edges()
+	var folder_name := dialogue_line.character.capitalize()
+	var file_name := dialogue_line.character.to_upper() + "64.png"
+	var portrait_path := "res://graphic/sprites people/%s/%s" % [folder_name, file_name]
+
+
+	if ResourceLoader.exists(portrait_path):
+		portrait.texture = load(portrait_path)
+	else:
+		portrait.texture = null
+
+	
 	dialogue_label.hide()
 	dialogue_label.dialogue_line = dialogue_line
 

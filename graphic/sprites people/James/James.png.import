@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn4hj28ia5ukp"
-path="res://.godot/imported/kawiarnia.png-6d6a59cb548d2a8b2d56f79d52a91a37.ctex"
+uid="uid://2ulgenf7w6r"
+path="res://.godot/imported/James.png-a2d3b0a317e46ee842b324ac1e9385bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphic/kawiarnia.png"
-dest_files=["res://.godot/imported/kawiarnia.png-6d6a59cb548d2a8b2d56f79d52a91a37.ctex"]
+source_file="res://graphic/sprites people/James/James.png"
+dest_files=["res://.godot/imported/James.png-a2d3b0a317e46ee842b324ac1e9385bf.ctex"]
 
 [params]
 

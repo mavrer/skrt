@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn4hj28ia5ukp"
-path="res://.godot/imported/kawiarnia.png-6d6a59cb548d2a8b2d56f79d52a91a37.ctex"
+uid="uid://c4db6n1rfegwh"
+path="res://.godot/imported/Ezequiel.png-3b67711dc73d3782f065cc36ce72ae4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphic/kawiarnia.png"
-dest_files=["res://.godot/imported/kawiarnia.png-6d6a59cb548d2a8b2d56f79d52a91a37.ctex"]
+source_file="res://graphic/sprites people/Ezequiel/Ezequiel.png"
+dest_files=["res://.godot/imported/Ezequiel.png-3b67711dc73d3782f065cc36ce72ae4d.ctex"]
 
 [params]
 

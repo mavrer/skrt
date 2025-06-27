@@ -1,12 +1,12 @@
 ~ start
-Caroline: [[Still asking about Lucas?|Hello.]]
-You: Did he say anything before he vanished?
-Caroline: He was acting strange lately.
-- Press her
-	You: Strange how?
-	Caroline: Like he wanted to tell me something... but he never got the chance.
-	Someone interrupted us, and then he was just... gone.
-- Be polite
-	You: Maybe he had something personal going on.
-	Caroline: Or something he couldn't talk about. Either way, it didn’t feel right.
+Caroline: [[Hi… You’re the new one, right?|Hello.]]
+You: That’s me — day two!
+Caroline: Brave soul.
+- Ask about Lucas
+	You: Did you know Lucas well?
+	Caroline: Not deeply. But lately… he seemed afraid of something.
+	Jumpy. Unfocused. I wanted to ask, but I didn’t get the chance.
+- Stay quiet
+	You: Hope today’s calmer than yesterday.
+	Caroline: Calm’s overrated. Trouble’s just quieter when it watches.
 => END

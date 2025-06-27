@@ -1,3 +1,4 @@
+#stare
 extends Node2D
 
 @onready var text_label = $Control/Panel/Label

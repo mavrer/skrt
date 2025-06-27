@@ -22,7 +22,6 @@ func _physics_process(_delta):
 	velocity = input_vector * speed
 	move_and_slide()
 
-	# ANIMACJE
 	if input_vector == Vector2.ZERO:
 		anim_sprite.stop()
 	else:

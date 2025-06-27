@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn4hj28ia5ukp"
-path="res://.godot/imported/kawiarnia.png-6d6a59cb548d2a8b2d56f79d52a91a37.ctex"
+uid="uid://bemhf5mlsnv5q"
+path="res://.godot/imported/Henry.png-9cfb0d87c77ea41088e65d66d5dedbe8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphic/kawiarnia.png"
-dest_files=["res://.godot/imported/kawiarnia.png-6d6a59cb548d2a8b2d56f79d52a91a37.ctex"]
+source_file="res://graphic/sprites people/Henry/Henry.png"
+dest_files=["res://.godot/imported/Henry.png-9cfb0d87c77ea41088e65d66d5dedbe8.ctex"]
 
 [params]
 

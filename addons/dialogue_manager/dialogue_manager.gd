@@ -11,7 +11,7 @@ const DMCompiler = preload("./compiler/compiler.gd")
 const DMCompilerResult = preload("./compiler/compiler_result.gd")
 const DMResolvedLineData = preload("./compiler/resolved_line_data.gd")
 
-signal dialogue_finished
+signal dialogue_finished(dialogue_resource)#moje
 
 
 ## Emitted when a dialogue balloon is created and dialogue starts
@@ -416,11 +416,12 @@ func create_resource_from_text(text: String) -> Resource:
 
 
 ## Show the example balloon
-func show_example_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> CanvasLayer:
-	var balloon: Node = load(_get_example_balloon_path()).instantiate()
+func show_example_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = [], balloon_override: PackedScene = null) -> CanvasLayer:
+	var balloon_scene: PackedScene = balloon_override if balloon_override != null else load(_get_example_balloon_path())
+	var balloon: Node = balloon_scene.instantiate()
+
 	_start_balloon.call_deferred(balloon, resource, title, extra_game_states)
 	return balloon
-
 
 ## Show the configured dialogue balloon
 func show_dialogue_balloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> Node:
@@ -469,7 +470,8 @@ func _start_balloon(balloon: Node, resource: DialogueResource, title: String, ex
 	bridge_dialogue_started.emit(resource)
 	
 	balloon.tree_exited.connect(func():
-		emit_signal("dialogue_finished"))
+		emit_signal("dialogue_finished", resource))
+
 
 
 # Get the path to the example balloon

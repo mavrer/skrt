@@ -8,6 +8,7 @@ extends Node
 @onready var day_number = $Day_Number
 @onready var ending = $Ending
 
+var pierce_out := false  #glob
 
 @onready var continue_button = start.get_node("Control/ContinueGame")
 
@@ -34,7 +35,6 @@ func next_day():
 	else:
 		show_location("ending")
 
-		
 
 func _on_day_number_timeout():
 	for child in get_children():
@@ -47,7 +47,6 @@ func _on_day_number_timeout():
 
 func start_new_game():
 	get_tree().paused = false
-	# Stwórz nowego gracza
 	player = player_scene.instantiate()
 	player_spawned = true
 	show_location("home")
@@ -69,7 +68,6 @@ func _on_continue_game_pressed():
 
 
 func show_location(location_name: String, ysort_name: String = "", spawn_name: String = ""):
-	# Ukryj wszystkie lokalizacje
 	start.visible = false
 	cafe.visible = false
 	express.visible = false
@@ -78,7 +76,7 @@ func show_location(location_name: String, ysort_name: String = "", spawn_name: S
 	day_number.visible =false
 	ending.visible =false
 
-	# Zapamiętaj poprzednią lokalizację
+	# save
 	if location_name != "":
 		previous_location = current_location
 	current_location = location_name
@@ -93,7 +91,7 @@ func show_location(location_name: String, ysort_name: String = "", spawn_name: S
 		
 		"cafe":
 			cafe.visible = true
-			print("Current day is: ", Global.current_day)  # 🔍
+			print("day: ", Global.current_day)  
 			if previous_location == "city":
 				cafe.start_day(Global.current_day)
 			move_player_to_scene("cafe", "YSortCafe", "PlayerSpawn")  # poprawione
@@ -107,7 +105,7 @@ func show_location(location_name: String, ysort_name: String = "", spawn_name: S
 
 		"home":
 			home.visible = true
-			move_player_to_scene("home", "YSortHome", "PlayerSpawn")  # poprawione
+			move_player_to_scene("home", "YSortHome", "PlayerSpawn") 
 			home.get_node("Camera2D").make_current()
 			previous_location="home"
 			
@@ -121,7 +119,10 @@ func show_location(location_name: String, ysort_name: String = "", spawn_name: S
 		"ending":
 			ending.visible=true
 			ending.get_node("Camera2D").make_current()
-			
+
+			DialogueManager.show_example_dialogue_balloon(
+			load("res://dialogi/1ending.dialogue"))
+
 		"city":
 			city.visible = true
 			if previous_location == "home":
@@ -129,11 +130,10 @@ func show_location(location_name: String, ysort_name: String = "", spawn_name: S
 			elif previous_location == "cafe":
 				spawn_name = "PlayerSpawn2"
 			else:
-				spawn_name = "PlayerSpawn"  # domyślny
+				spawn_name = "PlayerSpawn"  
 
 			move_player_to_scene("city", "YSortCity", spawn_name)
 
-			# Kamera follow dla playera
 			if player:
 				var follow_cam := player.get_node("FollowCam") as Camera2D
 				var city_cam := city.get_node_or_null("Camera2D") as Camera2D
@@ -162,30 +162,15 @@ func move_player_to_scene(scene_name: String, ysort_name: String, spawn_name: St
 	}
 
 	var scene = scene_dict.get(scene_name, null)
-	if not scene:
-		push_error("❌ Nie znaleziono sceny: " + scene_name)
-		return
-
-	print("✅ Scena znaleziona:", scene_name)
 
 	var ysort = scene.get_node_or_null(ysort_name)
-	if not ysort:
-		push_error("❌ Nie znaleziono YSort: " + ysort_name)
-		return
-
-	print("✅ YSort znaleziony:", ysort_name)
 
 	var spawn = ysort.get_node_or_null(spawn_name)
-	if not spawn:
-		push_error("❌ Nie znaleziono spawn pointa: " + spawn_name)
-		return
-
-	print("✅ Spawn point znaleziony:", spawn_name, "na pozycji", spawn.global_position)
-
+	
 	if player.get_parent() != ysort:
 		if player.get_parent():
 			player.get_parent().remove_child(player)
 		ysort.add_child(player)
 
 	player.global_position = spawn.global_position
-	print("✅ Player ustawiony na pozycję", player.global_position)
+	print("Poz pl", player.global_position)
