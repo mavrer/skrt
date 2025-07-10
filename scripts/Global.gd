@@ -19,9 +19,9 @@ func _ready():
 	dialogue_balloon_manager = get_node("/root/DialogueManager")
 
 var coffee_buttons = {
-	"Cappuccino": [6,0],
-	"Flat white": [6,7],
-	"Latte": [0,2],
+	"Cappuccino": [6,7],
+	"Flat white": [6,0],
+	"Latte": [7,2],
 	"Espresso doppio": [6],
 	"Single espresso":[2],
 }

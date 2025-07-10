@@ -99,6 +99,7 @@ func apply_dialogue_line() -> void:
 	character_label.visible = not dialogue_line.character.is_empty()
 	character_label.text = tr(dialogue_line.character, "dialogue")
 
+	# 🔽 Portret
 	var npc_name := dialogue_line.character.strip_edges()
 	var folder_name := dialogue_line.character.capitalize()
 	var file_name := dialogue_line.character.to_upper() + "64.png"

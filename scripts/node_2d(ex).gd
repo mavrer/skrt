@@ -12,6 +12,7 @@ func _ready():
 	for i in buttons.size():
 		buttons[i].pressed.connect(func(idx=i): on_coffee_button_pressed(idx))
 	gotowe.pressed.connect(on_ready_pressed)
+	#extocafe.pressed.connect(_on_ex_to_cafe_pressed)
 
 func on_coffee_button_pressed(index: int):
 	selected_buttons.append(index)

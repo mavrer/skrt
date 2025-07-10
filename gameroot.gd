@@ -111,7 +111,7 @@ func show_location(location_name: String, ysort_name: String = "", spawn_name: S
 			
 		"day_number":
 			day_number.visible=true
-			day_number.get_node("Label").text = "Dzień %d" % Global.current_day
+			day_number.get_node("Label").text = "Day %d" % Global.current_day
 			day_number.get_node("Camera2D").make_current()
 			day_number.get_node("2secTimer").connect("timeout", Callable(self, "_on_day_number_timeout"), CONNECT_ONE_SHOT)
 			day_number.get_node("2secTimer").start()
